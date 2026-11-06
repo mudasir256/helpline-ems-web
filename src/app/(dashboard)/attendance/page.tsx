@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { api } from "@/lib/client";
 import { Dropdown } from "@/components/dropdown";
+import { ExportPanel } from "@/components/export-panel";
 import { TableSkeleton } from "@/components/skeleton";
 import { EmptyState, PageHeader, StatusBadge } from "@/components/ui";
 import { durationBetween, formatTime, todayPK } from "@/lib/datetime";
@@ -60,6 +61,8 @@ export default function AttendancePage() {
           options={[{ value: "", label: "All projects" }, ...projects.map((p) => ({ value: p.id, label: p.name }))]}
         />
       </div>
+
+      <ExportPanel kinds={["attendance", "reports"]} filters={{ projectId }} />
 
       {data ? (
         <>

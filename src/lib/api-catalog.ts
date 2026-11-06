@@ -231,6 +231,25 @@ export const API_CATALOG = [
   {
     group: "admin",
     method: "GET",
+    path: "/api/admin/export/attendance",
+    title: "Export attendance (CSV)",
+    auth: "admin cookie",
+    notes:
+      "Query: ?from=YYYY-MM-DD&to=YYYY-MM-DD&projectId= (default: this month, max 92 days). One row per check-in; without projectId, active employees who did not check in get an Absent row per day.",
+    sortOrder: 25,
+  },
+  {
+    group: "admin",
+    method: "GET",
+    path: "/api/admin/export/reports",
+    title: "Export daily reports (CSV)",
+    auth: "admin cookie",
+    notes: "Query: ?from=YYYY-MM-DD&to=YYYY-MM-DD&projectId=&employeeId= (default: this month, max 92 days).",
+    sortOrder: 25,
+  },
+  {
+    group: "admin",
+    method: "GET",
     path: "/api/admin/notifications",
     title: "Admin report notifications",
     auth: "admin cookie",

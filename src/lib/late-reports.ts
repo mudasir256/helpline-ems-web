@@ -1,19 +1,10 @@
 import { prisma } from "./prisma";
-import { formatDate, shiftDatePK, todayPK } from "./datetime";
+import { formatDate, isCalendarDate, shiftDatePK, todayPK } from "./datetime";
 
 // A forgotten daily report can be added on any of the next 3 days...
 export const LATE_REPORT_WINDOW_DAYS = 3;
 // ...for at most 2 days in each calendar month. The month is the month of the missed day.
 export const LATE_REPORTS_PER_MONTH = 2;
-
-const DATE_PATTERN = /^\d{4}-\d{2}-\d{2}$/;
-
-// Rejects shapes like 2026-02-30 or 2026-13-01 instead of letting them roll over.
-function isCalendarDate(date: string) {
-  if (!DATE_PATTERN.test(date)) return false;
-  const parsed = new Date(`${date}T12:00:00Z`);
-  return !Number.isNaN(parsed.getTime()) && parsed.toISOString().slice(0, 10) === date;
-}
 
 function monthOf(date: string) {
   return date.slice(0, 7);

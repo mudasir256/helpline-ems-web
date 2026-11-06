@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { api } from "@/lib/client";
 import { Dropdown } from "@/components/dropdown";
+import { ExportPanel } from "@/components/export-panel";
 import { TableSkeleton } from "@/components/skeleton";
 import { EmptyState, PageHeader, StatusBadge, TypeBadge } from "@/components/ui";
 import { formatDate, formatTime, todayPK } from "@/lib/datetime";
@@ -92,6 +93,8 @@ export default function ReportsPage() {
           ) : null}
         </div>
       </div>
+
+      <ExportPanel kinds={["reports"]} filters={{ projectId, employeeId }} />
 
       <div className="card">
         {!ready ? (

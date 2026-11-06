@@ -57,3 +57,12 @@ export function shiftDatePK(date: string, days: number) {
   noon.setUTCDate(noon.getUTCDate() + days);
   return noon.toISOString().slice(0, 10);
 }
+
+const DATE_PATTERN = /^\d{4}-\d{2}-\d{2}$/;
+
+// Rejects shapes like 2026-02-30 or 2026-13-01 instead of letting them roll over.
+export function isCalendarDate(date: string) {
+  if (!DATE_PATTERN.test(date)) return false;
+  const parsed = new Date(`${date}T12:00:00Z`);
+  return !Number.isNaN(parsed.getTime()) && parsed.toISOString().slice(0, 10) === date;
+}

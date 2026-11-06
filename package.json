@@ -10,6 +10,7 @@
     "db:push": "prisma db push",
     "db:seed": "node --env-file=.env ./node_modules/tsx/dist/cli.mjs prisma/seed.ts",
     "db:seed:admin": "node --env-file=.env ./node_modules/tsx/dist/cli.mjs prisma/seed-admin.ts",
+    "db:seed:apis": "node --env-file=.env ./node_modules/tsx/dist/cli.mjs prisma/seed-apis.ts",
     "db:cleanup-orphans": "node --env-file=.env ./node_modules/tsx/dist/cli.mjs prisma/cleanup-orphans.ts",
     "db:studio": "prisma studio"
   },
